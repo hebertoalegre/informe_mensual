@@ -1,0 +1,188 @@
+{% include 'layout.html' %}
+{% block body %}
+<style>
+    img {
+      max-width: 100%;
+      height: auto;}
+      
+    .b-example-divider {
+      height: 0.5rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+    .b-whiteexample-divider{
+        height: 0.25rem;
+        background-color: rgb(255, 255, 255);
+        border: solid rgb(255, 255, 255);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgb(255, 255, 255), inset 0 .125em .5em rgb(255, 255, 255);
+      }
+    
+      .b-white-divider{
+        height: 2.5rem;
+        background-color: rgb(255, 255, 255);
+        border: solid rgb(255, 255, 255);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgb(255, 255, 255), inset 0 .125em .5em rgb(255, 255, 255);
+      }
+    
+    hr {
+      margin: 1rem 0;
+      color: inherit;
+      background-color: rgb(0, 0, 0);
+      border: solid rgb(0, 0, 0);
+      opacity: 0.25;
+    }
+    
+    .vr-example{
+      border-left: 6px solid green;
+      }
+</style>
+
+  <div class="b-example-divider"></div>
+  <div class="b-whiteexample-divider"></div>
+  <div class="container">
+    <div class="py-5 text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted"> Tu informacion</span>
+                </h4>
+                <p class="text-left mx-auto"> Para llevar a cabo la <strong>edición</strong> de cualquiera de los items de registro, por favor siga las siguientes instrucciones.</p>
+                <ul class="text-left mx-auto">
+                    <li> Selecione el item que desea editar, haciendo click sobre el <em>checkbox</em>. Puede seleccionar varios <em>items</em> a la vez</li>
+                    <li> Al seleccionar, aparecera una entrada. Por favor escribir la nueva entrada</li>
+                    <li> Revisar que el nuevo <em>item</em> este bien escrito</li>
+                    <li> Hacer click sobre el boton <strong>Editar</strong></li>
+                </ul>
+                <form action="{{url_for('delete')}}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                <small class="text-muted">Nombre del Usuario</small>:
+                                <h5 class="my-0">  {{table.usuario}} </h5>
+                                <hr>
+                            </div>
+                            <div>
+                                <span class="text-muted">
+                                    <input class="form-check-input" type="checkbox" data-bs-toggle="collapse"  href="#usuarioedit" role="switch" id="new_usuario" name="new_usuario" value="editar">
+                                </span>
+                            </div>
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="collapse" id="usuarioedit">
+                            <input class="form-control w-100" size="8" type="text" name="newusuario">
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                <small class="text-muted">Documento Personal de Identificación</small>:
+                                <h5 class="my-0">   {{table.dpi}}</h5>
+                                <hr>
+                            </div>
+                            <div>
+                                <span class="text-muted">
+                                    <input class="form-check-input" type="checkbox" data-bs-toggle="collapse"  href="#dpiedit" role="switch" id="new_dpi" name="new_dpi" value="editar">
+                                </span>
+                            </div>
+                            
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="collapse" id="dpiedit">
+                            <input class="form-control w-100" size="8" type="text" name="newdpi">
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                <small class="text-muted">Número Contrato Administrativo</small>:
+                                <h5 class="my-0"> {{table.no_contrato}}</h5>    
+                                <hr>
+                            </div>
+                            <div>
+                                <span class="text-muted">
+                                    <input class="form-check-input" type="checkbox" data-bs-toggle="collapse"  href="#contratoedit" role="switch" id="new_contrato" name="new_contrato" value="editar">
+                                </span>
+                            </div>
+                            
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="collapse" id="contratoedit">
+                            <input class="form-control w-100" size="8" type="text" name="newcontrato">
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                <small class="text-muted">Número Acuerdo Ministerial</small>:
+                                <h5 class="my-0">  {{table.no_acuerdo}}</h5>
+                                <hr>
+                            </div>
+                            <div>
+                                <span class="text-muted">
+                                    <input class="form-check-input" type="checkbox" data-bs-toggle="collapse"  href="#actividadedit" role="switch" id="new_acuerdo" name="new_acuerdo" value="editar">
+                                </span>
+                            </div>
+                          
+                        </li>
+                        <div class="b-whiteexample-divider"></div>
+                        <li class="collapse" id="actividadedit">
+                            <input class="form-control w-100"  type="text" name="newactividad" size="8">
+                        </li>
+                    </ul>                
+                <hr>
+                  <button type="submit" class="btn btn-outline-success w-25" name="editar" value="editado">Editar</button>
+                  <a href="{{url_for('informe')}}" class="btn btn-outline-info w-25"> Regesar</a>
+
+                </form>
+
+            </div>
+            <div class="col-md-8">
+                <h4 class="mb-3"> Listado de Usuarios</h4>
+                <p class="text-left mx-auto"> Por favor seleccione el registro que desea eliminar, haciendo click sobre el <em>checkbox</em>. </p>
+                <div class="alert alert-danger" role="alert">
+                    <p class="text-left mx-auto"> <strong> Recuerde que solo podra eliminar el registro asignado a su persona y que al hacerlo se perderan todos los datos asociados; regresando a la seccion de inicio.</strong></p>
+                </div>
+                <form action="" method="post">
+                    <div data-bs-spy="scroll" data-bs-root-margin="100px 100px -75%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+                        <table id="listausuarios" class="table table-striped">
+                            <thead>
+                           <tr>
+                               <th scope="col">Usuario</th>
+                               <th scope="col">Correo electrónico</th>
+                               <th scope="col">DPI</th>
+                               <th scope="col">Número de Contrato Administrativo</th>
+                               <th scope="col">Número de Acuerdo Ministerial</th>
+                               <th scope="col"> Check it</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                               {% for usuario in usuarios %}
+                               <tr>
+                                   <td>{{usuario.usuario}}</td>
+                                   <td>{{usuario.email}}</td>
+                                   <td>{{usuario.dpi}}</td>
+                                   <td>{{usuario.no_contrato}}</td>
+                                   <td>{{usuario.no_acuerdo}}</td>
+                                   <td> <input class="form-check" type="checkbox" placeholder="check it" name="deleteit" id="{{usuario.id}}" value="{{usuario.id}}"> </td>
+                               </tr>
+                               {% endfor %}                  
+                           </tbody>    
+                       </table>
+                    </div>               
+                
+                  <hr>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="post_header" value="log out">
+                    <input type="submit"  value="Logout" class="btn btn-outline-warning w-25">  
+                    <button class="btn btn-outline-danger w-50" type="submit" name="borrar" value="eliminar">Borrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+ 
+
+
+{% endblock %}

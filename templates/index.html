@@ -1,0 +1,20 @@
+{% include 'layout.html' %}
+{% block body %}
+<div class="container">
+
+  <div class="row g-3">
+    <div class="col center">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-center" alt="Sample image">
+    </div>
+    <div class="col">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">  Registro </h3>
+      <p> Por favor llene el formulario con la información que se le solicita</p>  
+      
+        {% include 'views/unauthenticated.html' %}     
+
+    </div>
+      
+    </div>
+</div>
+  
+{% endblock %}
